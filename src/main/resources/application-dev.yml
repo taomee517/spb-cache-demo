@@ -1,0 +1,17 @@
+server:
+    port: 8200
+
+
+spring:
+    datasource:
+        url: jdbc:mysql://127.0.0.1:3306/oa?useSSL=false
+        driver-class-name: com.mysql.jdbc.Driver
+        username: root
+        password: lt030517
+mybatis:
+    mapper-locations: classpath:mybatis/mapper/*.xml
+    typeAliasesPackage: com.idea.spbdemo.dao.po
+
+logging:
+    level:
+        com.idea.spbdemo.dao.mapper: debug

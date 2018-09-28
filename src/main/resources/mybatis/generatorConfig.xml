@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+<generatorConfiguration>
+    <!--数据库驱动-->
+    <classPathEntry    location="F:\jdbcDriver\mysql-connector-java-5.1.41-bin.jar"/>
+    <context id="DB2Tables"    targetRuntime="MyBatis3">
+        <commentGenerator>
+            <property name="suppressDate" value="true"/>
+            <property name="suppressAllComments" value="true"/>
+        </commentGenerator>
+        <!--数据库链接地址账号密码-->
+        <jdbcConnection driverClass="com.mysql.jdbc.Driver" connectionURL="jdbc:mysql://localhost:3306/oa" userId="root" password="lt030517">
+        </jdbcConnection>
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false"/>
+        </javaTypeResolver>
+        <!--生成po类存放位置-->
+        <javaModelGenerator targetPackage="com.idea.spbdemo.dao.po" targetProject="F:\spb-demo\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+            <property name="trimStrings" value="true"/>
+        </javaModelGenerator>
+        <!--生成xml存放位置-->
+        <sqlMapGenerator targetPackage="com.idea.spbdemo.dao.mapper.xml" targetProject="F:\spb-demo\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </sqlMapGenerator>
+        <!--生成mapper存放位置-->
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.idea.spbdemo.dao.mapper" targetProject="F:\spb-demo\src\main\java">
+            <property name="enableSubPackages" value="true"/>
+        </javaClientGenerator>
+        <!--生成对应表及类名-->
+        <table tableName="users" domainObjectName="UserPO" 
+        enableCountByExample="false" enableUpdateByExample="false" 
+        enableDeleteByExample="false" enableSelectByExample="true" 
+        selectByExampleQueryId="false"></table>
+    </context>
+</generatorConfiguration>
