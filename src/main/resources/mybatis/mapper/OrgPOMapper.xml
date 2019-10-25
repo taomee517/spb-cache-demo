@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.idea.spbdemo.dao.mapper.OrgPOMapper" >
+  <resultMap id="BaseResultMap" type="com.idea.spbdemo.dao.po.OrgPO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="org_name" property="orgName" jdbcType="VARCHAR" />
+    <result column="levelcode" property="levelcode" jdbcType="VARCHAR" />
+    <result column="manage_user" property="manageUser" jdbcType="VARCHAR" />
+    <result column="manage_uid" property="manageUid" jdbcType="INTEGER" />
+    <result column="contact_user" property="contactUser" jdbcType="VARCHAR" />
+    <result column="contact_phone" property="contactPhone" jdbcType="VARCHAR" />
+    <result column="contact_address" property="contactAddress" jdbcType="VARCHAR" />
+    <result column="active_status" property="activeStatus" jdbcType="TINYINT" />
+    <result column="car_num" property="carNum" jdbcType="INTEGER" />
+    <result column="terminal_num" property="terminalNum" jdbcType="INTEGER" />
+    <result column="crt_time" property="crtTime" jdbcType="TIMESTAMP" />
+    <result column="crt_uid" property="crtUid" jdbcType="INTEGER" />
+    <result column="upd_time" property="updTime" jdbcType="TIMESTAMP" />
+    <result column="upd_uid" property="updUid" jdbcType="INTEGER" />
+    <result column="old_level_code" property="oldLevelCode" jdbcType="VARCHAR" />
+    <result column="device_type" property="deviceType" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Example_Where_Clause" >
+    <where >
+      <foreach collection="oredCriteria" item="criteria" separator="or" >
+        <if test="criteria.valid" >
+          <trim prefix="(" suffix=")" prefixOverrides="and" >
+            <foreach collection="criteria.criteria" item="criterion" >
+              <choose >
+                <when test="criterion.noValue" >
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue" >
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue" >
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue" >
+                  and ${criterion.condition}
+                  <foreach collection="criterion.value" item="listItem" open="(" close=")" separator="," >
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List" >
+    id, org_name, levelcode, manage_user, manage_uid, contact_user, contact_phone, contact_address, 
+    active_status, car_num, terminal_num, crt_time, crt_uid, upd_time, upd_uid, old_level_code, 
+    device_type
+  </sql>
+  <select id="selectByExample" resultMap="BaseResultMap" parameterType="com.idea.spbdemo.dao.po.OrgPOExample" >
+    select
+    <if test="distinct" >
+      distinct
+    </if>
+    'false' as QUERYID,
+    <include refid="Base_Column_List" />
+    from sys_org
+    <if test="_parameter != null" >
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null" >
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from sys_org
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from sys_org
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.idea.spbdemo.dao.po.OrgPO" >
+    insert into sys_org (id, org_name, levelcode, 
+      manage_user, manage_uid, contact_user, 
+      contact_phone, contact_address, active_status, 
+      car_num, terminal_num, crt_time, 
+      crt_uid, upd_time, upd_uid, 
+      old_level_code, device_type)
+    values (#{id,jdbcType=INTEGER}, #{orgName,jdbcType=VARCHAR}, #{levelcode,jdbcType=VARCHAR}, 
+      #{manageUser,jdbcType=VARCHAR}, #{manageUid,jdbcType=INTEGER}, #{contactUser,jdbcType=VARCHAR}, 
+      #{contactPhone,jdbcType=VARCHAR}, #{contactAddress,jdbcType=VARCHAR}, #{activeStatus,jdbcType=TINYINT}, 
+      #{carNum,jdbcType=INTEGER}, #{terminalNum,jdbcType=INTEGER}, #{crtTime,jdbcType=TIMESTAMP}, 
+      #{crtUid,jdbcType=INTEGER}, #{updTime,jdbcType=TIMESTAMP}, #{updUid,jdbcType=INTEGER}, 
+      #{oldLevelCode,jdbcType=VARCHAR}, #{deviceType,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.idea.spbdemo.dao.po.OrgPO" >
+    insert into sys_org
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        id,
+      </if>
+      <if test="orgName != null" >
+        org_name,
+      </if>
+      <if test="levelcode != null" >
+        levelcode,
+      </if>
+      <if test="manageUser != null" >
+        manage_user,
+      </if>
+      <if test="manageUid != null" >
+        manage_uid,
+      </if>
+      <if test="contactUser != null" >
+        contact_user,
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone,
+      </if>
+      <if test="contactAddress != null" >
+        contact_address,
+      </if>
+      <if test="activeStatus != null" >
+        active_status,
+      </if>
+      <if test="carNum != null" >
+        car_num,
+      </if>
+      <if test="terminalNum != null" >
+        terminal_num,
+      </if>
+      <if test="crtTime != null" >
+        crt_time,
+      </if>
+      <if test="crtUid != null" >
+        crt_uid,
+      </if>
+      <if test="updTime != null" >
+        upd_time,
+      </if>
+      <if test="updUid != null" >
+        upd_uid,
+      </if>
+      <if test="oldLevelCode != null" >
+        old_level_code,
+      </if>
+      <if test="deviceType != null" >
+        device_type,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="id != null" >
+        #{id,jdbcType=INTEGER},
+      </if>
+      <if test="orgName != null" >
+        #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelcode != null" >
+        #{levelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="manageUser != null" >
+        #{manageUser,jdbcType=VARCHAR},
+      </if>
+      <if test="manageUid != null" >
+        #{manageUid,jdbcType=INTEGER},
+      </if>
+      <if test="contactUser != null" >
+        #{contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="activeStatus != null" >
+        #{activeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="carNum != null" >
+        #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="terminalNum != null" >
+        #{terminalNum,jdbcType=INTEGER},
+      </if>
+      <if test="crtTime != null" >
+        #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtUid != null" >
+        #{crtUid,jdbcType=INTEGER},
+      </if>
+      <if test="updTime != null" >
+        #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updUid != null" >
+        #{updUid,jdbcType=INTEGER},
+      </if>
+      <if test="oldLevelCode != null" >
+        #{oldLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        #{deviceType,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.idea.spbdemo.dao.po.OrgPO" >
+    update sys_org
+    <set >
+      <if test="orgName != null" >
+        org_name = #{orgName,jdbcType=VARCHAR},
+      </if>
+      <if test="levelcode != null" >
+        levelcode = #{levelcode,jdbcType=VARCHAR},
+      </if>
+      <if test="manageUser != null" >
+        manage_user = #{manageUser,jdbcType=VARCHAR},
+      </if>
+      <if test="manageUid != null" >
+        manage_uid = #{manageUid,jdbcType=INTEGER},
+      </if>
+      <if test="contactUser != null" >
+        contact_user = #{contactUser,jdbcType=VARCHAR},
+      </if>
+      <if test="contactPhone != null" >
+        contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="contactAddress != null" >
+        contact_address = #{contactAddress,jdbcType=VARCHAR},
+      </if>
+      <if test="activeStatus != null" >
+        active_status = #{activeStatus,jdbcType=TINYINT},
+      </if>
+      <if test="carNum != null" >
+        car_num = #{carNum,jdbcType=INTEGER},
+      </if>
+      <if test="terminalNum != null" >
+        terminal_num = #{terminalNum,jdbcType=INTEGER},
+      </if>
+      <if test="crtTime != null" >
+        crt_time = #{crtTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="crtUid != null" >
+        crt_uid = #{crtUid,jdbcType=INTEGER},
+      </if>
+      <if test="updTime != null" >
+        upd_time = #{updTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="updUid != null" >
+        upd_uid = #{updUid,jdbcType=INTEGER},
+      </if>
+      <if test="oldLevelCode != null" >
+        old_level_code = #{oldLevelCode,jdbcType=VARCHAR},
+      </if>
+      <if test="deviceType != null" >
+        device_type = #{deviceType,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.idea.spbdemo.dao.po.OrgPO" >
+    update sys_org
+    set org_name = #{orgName,jdbcType=VARCHAR},
+      levelcode = #{levelcode,jdbcType=VARCHAR},
+      manage_user = #{manageUser,jdbcType=VARCHAR},
+      manage_uid = #{manageUid,jdbcType=INTEGER},
+      contact_user = #{contactUser,jdbcType=VARCHAR},
+      contact_phone = #{contactPhone,jdbcType=VARCHAR},
+      contact_address = #{contactAddress,jdbcType=VARCHAR},
+      active_status = #{activeStatus,jdbcType=TINYINT},
+      car_num = #{carNum,jdbcType=INTEGER},
+      terminal_num = #{terminalNum,jdbcType=INTEGER},
+      crt_time = #{crtTime,jdbcType=TIMESTAMP},
+      crt_uid = #{crtUid,jdbcType=INTEGER},
+      upd_time = #{updTime,jdbcType=TIMESTAMP},
+      upd_uid = #{updUid,jdbcType=INTEGER},
+      old_level_code = #{oldLevelCode,jdbcType=VARCHAR},
+      device_type = #{deviceType,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

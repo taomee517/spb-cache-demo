@@ -1,16 +1,16 @@
 /*
 Navicat MySQL Data Transfer
 
-Source Server         : localhost
-Source Server Version : 50721
-Source Host           : localhost:3306
+Source Server         : local
+Source Server Version : 50722
+Source Host           : 127.0.0.1:3306
 Source Database       : oa
 
 Target Server Type    : MYSQL
-Target Server Version : 50721
+Target Server Version : 50722
 File Encoding         : 65001
 
-Date: 2018-05-01 23:25:14
+Date: 2019-10-25 16:34:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -286,6 +286,58 @@ INSERT INTO `role` VALUES ('14', '咨询顾问（市场部）', '给学生提供
 INSERT INTO `role` VALUES ('15', '咨询师（渠道）', '负责渠道学生咨询');
 
 -- ----------------------------
+-- Table structure for sys_org
+-- ----------------------------
+DROP TABLE IF EXISTS `sys_org`;
+CREATE TABLE `sys_org` (
+  `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '自增id',
+  `org_name` varchar(32) DEFAULT NULL COMMENT '组织结构名称',
+  `levelcode` varchar(32) DEFAULT NULL COMMENT '组织结构编码',
+  `manage_user` varchar(32) DEFAULT NULL COMMENT '机构管理员',
+  `manage_uid` int(11) DEFAULT NULL COMMENT '机构管理员用户id',
+  `contact_user` varchar(32) DEFAULT NULL COMMENT '联系人',
+  `contact_phone` varchar(16) DEFAULT NULL COMMENT '联系电话',
+  `contact_address` varchar(128) DEFAULT NULL COMMENT '联系地址',
+  `active_status` tinyint(4) NOT NULL DEFAULT '1' COMMENT '激活状态：1，激活，2,冻结',
+  `car_num` int(11) DEFAULT NULL COMMENT '车辆数量',
+  `terminal_num` int(11) DEFAULT NULL COMMENT '设备数量',
+  `crt_time` datetime DEFAULT NULL COMMENT '创建时间',
+  `crt_uid` int(11) DEFAULT NULL COMMENT '创建人',
+  `upd_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '更新时间',
+  `upd_uid` int(11) DEFAULT NULL COMMENT '更新人',
+  `old_level_code` varchar(32) DEFAULT NULL COMMENT '旧平台商户部门levelcode',
+  `device_type` varchar(255) DEFAULT NULL COMMENT '同步设备类型',
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=24 DEFAULT CHARSET=utf8 COMMENT='组织机构';
+
+-- ----------------------------
+-- Records of sys_org
+-- ----------------------------
+INSERT INTO `sys_org` VALUES ('1', '总管理员添加商户1', '1/', '商户1', '3', '商户1联系人', '13111111111', '商户1联系地址', '1', '7', '4', '2018-09-11 12:18:18', '1', '2018-12-12 13:14:23', '1', '1/2013', '22,23,17,16,3');
+INSERT INTO `sys_org` VALUES ('2', '总管员添加商户2', '2/', '商户2', '4', '商户2联系人', '13122222222', '商户2联系地址', '1', '0', '4', '2018-09-11 12:19:35', '1', '2018-12-20 15:04:49', '1', null, null);
+INSERT INTO `sys_org` VALUES ('3', '成员添加商户1', '3/', 'cysh1', '6', '成员添加商户1联系人', '成员添加商户1联系电话', '成员添加商户1联系地址', '1', null, null, '2018-09-11 13:34:45', '2', '2018-09-14 14:55:53', '1', null, null);
+INSERT INTO `sys_org` VALUES ('4', '开发商户', '4/', '123456789', '19', 'zy', '13627652098', '123', '1', '7', '3', '2018-09-29 09:02:24', '1', '2018-12-18 11:39:46', '1', '', '3,22');
+INSERT INTO `sys_org` VALUES ('5', 'renwei11', '5/', 'renwei1', '24', 'ddddd', 'ddd', 'dddd', '1', null, '2', '2018-10-13 10:29:50', '1', '2018-11-08 09:46:21', '1', null, null);
+INSERT INTO `sys_org` VALUES ('6', '549156', '6/', '6516', '26', '9582', '2592921', '95129', '2', '1', '3', '2018-10-13 15:30:24', '1', '2018-11-22 17:06:27', '1', null, null);
+INSERT INTO `sys_org` VALUES ('7', '张霞商户', '7/', 'zxsh', '27', 'zhangxia', '13666666666', '商户联系地址', '1', '0', '1', '2018-10-15 14:01:14', '1', '2018-11-13 14:09:05', '1', '', '22');
+INSERT INTO `sys_org` VALUES ('8', 'renwei2', '8/', 'renwei2', '29', '1234', '2222', '2222', '1', null, null, '2018-10-16 13:53:12', '1', '2018-10-16 13:52:50', null, null, null);
+INSERT INTO `sys_org` VALUES ('9', '123213', '9/', '123123123123', '38', '123123', '123123', '123123', '1', null, null, '2018-10-29 09:34:41', '1', '2018-10-29 09:34:28', null, null, null);
+INSERT INTO `sys_org` VALUES ('10', 'rw', '10/', 'rw', '40', '121', '121', '121', '1', null, null, '2018-10-30 17:46:39', '1', '2018-11-13 08:44:09', '1', null, null);
+INSERT INTO `sys_org` VALUES ('11', 'rw1', '11/', 'rw1', '41', '33', '33', '333', '1', null, null, '2018-10-30 17:46:57', '1', '2018-10-30 17:46:47', null, null, null);
+INSERT INTO `sys_org` VALUES ('12', '钛捷', '12/', '钛捷管理员', '88', '桂林', '13689466446', '上海-浦东', '1', '5000', '1', '2018-11-06 10:06:51', '1', '2018-11-07 14:58:41', '1', null, null);
+INSERT INTO `sys_org` VALUES ('13', '重庆人保财险', '13/', 'ccccccc', '42', '123', '123', '123', '2', null, null, '2018-11-10 17:00:11', '1', '2018-11-16 11:09:30', null, '1/2013/1', '3,22,23,17,16');
+INSERT INTO `sys_org` VALUES ('14', '', '14/', '1234512345', '43', '123', '12345678911', '123', '1', null, null, '2018-11-13 09:33:02', '1', '2018-11-13 09:33:03', null, null, null);
+INSERT INTO `sys_org` VALUES ('15', 'ces', '15/', '1', '44', '123', '112312', '13123123', '1', null, null, '2018-11-13 11:40:22', '1', '2018-11-16 11:27:47', '1', '1/2013/2', '22,16,23,3');
+INSERT INTO `sys_org` VALUES ('16', '重庆伟红名车维修有限公司', '16/', '111', '45', '123', '123', '123', '2', null, null, '2018-11-13 14:04:02', '1', '2018-11-13 14:06:24', '1', '1/617/632', '3');
+INSERT INTO `sys_org` VALUES ('17', '重庆伟红名车维修有限公司', '17/', 'sdfsdf', '46', 'sdf', 'sdf', 'fs', '1', null, null, '2018-11-13 14:53:20', '1', '2018-11-13 14:53:20', null, '1/617/632', '3,22');
+INSERT INTO `sys_org` VALUES ('18', '重庆金融测试门店', '18/', 'qweqwe', '47', 'asd', 'asd', 'asd', '2', '1', null, '2018-11-14 14:02:03', '1', '2018-12-20 09:06:45', null, '1/807/1778', '22,3,23');
+INSERT INTO `sys_org` VALUES ('19', '湖南达田汽车贸易有限公司', '19/', '123123asd', '48', '123', '123', '123', '2', null, null, '2018-11-14 19:35:19', '1', '2018-11-14 19:34:57', null, '1/2215/2453', '22,23,16');
+INSERT INTO `sys_org` VALUES ('20', '湖南省常德市', '20/', 'sad123', '49', '123', '123', '123', '1', null, null, '2018-11-20 10:02:50', '1', '2018-11-20 10:37:00', null, '1/10/377', '3');
+INSERT INTO `sys_org` VALUES ('21', '常德华运通丰田汽车销售服务有限公司', '21/', '123213123123', '52', '123', '123', '123', '1', null, null, '2018-11-20 10:29:31', '1', '2018-11-20 10:29:15', null, '1/2215/2425', '3,22,23,16,17');
+INSERT INTO `sys_org` VALUES ('22', '重庆万家丰田汽车销售服务有限公司', '22/', '1234567890', '54', '111', '111', '1111', '1', null, null, '2018-11-22 20:58:03', '1', '2018-11-22 20:57:49', null, '1/10/41/42/2122', '3,22,23,16,17');
+INSERT INTO `sys_org` VALUES ('23', '重庆龙华实业集团众华汽车销售服务有限公司(东风本田)', '23/', 'fsdfsd', '56', '123', '123', '123', '1', null, null, '2018-11-23 19:44:56', '1', '2018-11-23 19:44:44', null, '1/1421/1433', '3,22,23,16,17');
+
+-- ----------------------------
 -- Table structure for userole
 -- ----------------------------
 DROP TABLE IF EXISTS `userole`;
@@ -369,6 +421,7 @@ CREATE TABLE `users` (
   `sex` varchar(255) NOT NULL,
   `deptid` int(2) NOT NULL,
   `email` varchar(255) NOT NULL,
+  `img` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`uid`),
   KEY `udeptid` (`deptid`),
   CONSTRAINT `udeptid` FOREIGN KEY (`deptid`) REFERENCES `depart` (`deptid`)
@@ -377,53 +430,53 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('10000', 'taomee', '888888', '012c4741dff14e8bb12824cd2179b6c4', '罗涛', '男', '21', '5001640@qq.com');
-INSERT INTO `users` VALUES ('10001', '包万春', '888888', '', '包万春', '女', '21', '5001235@qq.com');
-INSERT INTO `users` VALUES ('10002', '鲍成东', '888888', '', '鲍成东', '男', '22', '5001236@qq.com');
-INSERT INTO `users` VALUES ('10003', '蔡宗平', '888888', '', '蔡宗平', '男', '23', '5001237@qq.com');
-INSERT INTO `users` VALUES ('10004', '陈新建', '888888', '', '陈新建', '男', '24', '5001238@qq.com');
-INSERT INTO `users` VALUES ('10005', '陈子烨', '888888', '', '陈子烨', '男', '25', '5001239@qq.com');
-INSERT INTO `users` VALUES ('10006', '杜家柱', '888888', '', '杜家柱', '男', '21', '5001240@qq.com');
-INSERT INTO `users` VALUES ('10007', '高峰', '888888', 'dda78eeefb0c47ad98575203721cec2e', '高峰', '男', '21', '5001241@qq.com');
-INSERT INTO `users` VALUES ('10008', '高鹏', '888888', '', '高鹏', '男', '21', '5001242@qq.com');
-INSERT INTO `users` VALUES ('10009', '郭诚', '888888', '', '郭诚', '男', '21', '5001243@qq.com');
-INSERT INTO `users` VALUES ('10010', '何文伍', '888888', '6593da9abd92456181413f9d0deb81ce', '何文伍', '男', '21', '5001244@qq.com');
-INSERT INTO `users` VALUES ('10011', '黄冰', '888888', 'a34542b5f25342ecbdcce488414892fb', '黄冰', '女', '23', '5001245@qq.com');
-INSERT INTO `users` VALUES ('10012', '黄金华', '888888', '', '黄金华', '男', '23', '5001246@qq.com');
-INSERT INTO `users` VALUES ('10013', '黄星智', '888888', '', '黄星智', '男', '23', '5001247@qq.com');
-INSERT INTO `users` VALUES ('10014', '江秋旭', '888888', '', '江秋旭', '男', '23', '5001248@qq.com');
-INSERT INTO `users` VALUES ('10015', '蒋士虎', '888888', '', '蒋士虎', '男', '23', '5001249@qq.com');
-INSERT INTO `users` VALUES ('10016', '雷军亚', '888888', '', '雷军亚', '男', '23', '5001250@qq.com');
-INSERT INTO `users` VALUES ('10017', '黎军', '888888', '', '黎军', '男', '23', '5001251@qq.com');
-INSERT INTO `users` VALUES ('10018', '李杰', '888888', '', '李杰', '男', '24', '5001252@qq.com');
-INSERT INTO `users` VALUES ('10019', '李莉梅', '888888', '', '李莉梅', '女', '24', '5001253@qq.com');
-INSERT INTO `users` VALUES ('10020', '李祈芳', '888888', '', '李祈芳', '女', '24', '5001254@qq.com');
-INSERT INTO `users` VALUES ('10021', '李启明', '888888', '', '李启明', '男', '24', '5001255@qq.com');
-INSERT INTO `users` VALUES ('10022', '李绪强', '888888', '', '李绪强', '男', '24', '5001256@qq.com');
-INSERT INTO `users` VALUES ('10023', '刘龙光', '888888', '', '刘龙光', '男', '24', '5001257@qq.com');
-INSERT INTO `users` VALUES ('10024', '毛渝', '888888', '', '毛渝', '男', '24', '5001258@qq.com');
-INSERT INTO `users` VALUES ('10025', '潘宝俊', '888888', '', '潘宝俊', '男', '22', '5001259@qq.com');
-INSERT INTO `users` VALUES ('10026', '任辉敏', '888888', '', '任辉敏', '女', '22', '5001260@qq.com');
-INSERT INTO `users` VALUES ('10027', '石柳青', '888888', '', '石柳青', '女', '22', '5001261@qq.com');
-INSERT INTO `users` VALUES ('10028', '宋建华', '888888', '', '宋建华', '男', '22', '5001262@qq.com');
-INSERT INTO `users` VALUES ('10029', '覃道胜', '888888', '', '覃道胜', '男', '22', '5001263@qq.com');
-INSERT INTO `users` VALUES ('10030', '王改霞', '888888', '', '王改霞', '女', '22', '5001264@qq.com');
-INSERT INTO `users` VALUES ('10031', '王明星', '888888', '', '王明星', '男', '25', '5001265@qq.com');
-INSERT INTO `users` VALUES ('10032', '魏立博', '888888', '', '魏立博', '男', '25', '5001266@qq.com');
-INSERT INTO `users` VALUES ('10033', '吴国安', '888888', '', '吴国安', '男', '25', '5001267@qq.com');
-INSERT INTO `users` VALUES ('10034', '徐珊珊', '888888', '', '徐珊珊', '女', '25', '5001268@qq.com');
-INSERT INTO `users` VALUES ('10035', '徐婉芳', '888888', '', '徐婉芳', '女', '25', '5001269@qq.com');
-INSERT INTO `users` VALUES ('10036', '徐宇', '888888', 'e76462fca9d8455d9846bc3692e15a78', '徐宇', '男', '25', '5001270@qq.com');
-INSERT INTO `users` VALUES ('10037', '鄢腾', '888888', '', '鄢腾', '男', '25', '5001271@qq.com');
-INSERT INTO `users` VALUES ('10038', '杨桂英', '888888', '', '杨桂英', '女', '25', '5001272@qq.com');
-INSERT INTO `users` VALUES ('10039', '杨萍', '888888', '', '杨萍', '男', '21', '5001273@qq.com');
-INSERT INTO `users` VALUES ('10040', '杨晔', '888888', '', '杨晔', '女', '21', '5001274@qq.com');
-INSERT INTO `users` VALUES ('10041', '喻佺', '888888', '', '喻佺', '男', '21', '5001275@qq.com');
-INSERT INTO `users` VALUES ('10042', '袁昊杰', '888888', '', '袁昊杰', '男', '24', '5001276@qq.com');
-INSERT INTO `users` VALUES ('10043', '张良泽', '888888', '', '张良泽', '男', '24', '5001277@qq.com');
-INSERT INTO `users` VALUES ('10044', '张梅杰', '888888', '', '张梅杰', '男', '22', '5001278@qq.com');
-INSERT INTO `users` VALUES ('10045', '赵剑波', '888888', '', '赵剑波', '男', '22', '5001279@qq.com');
-INSERT INTO `users` VALUES ('10046', '赵雪尔', '888888', '', '赵雪尔', '女', '24', '5001280@qq.com');
-INSERT INTO `users` VALUES ('10047', '周小飞', '888888', '', '周小飞', '男', '24', '5001281@qq.com');
-INSERT INTO `users` VALUES ('10048', '周长静', '888888', '', '周长静', '女', '22', '5001282@qq.com');
-INSERT INTO `users` VALUES ('10049', '朱训兵', '888888', '', '朱训兵', '男', '22', '5001283@qq.com');
+INSERT INTO `users` VALUES ('10000', 'taomee', '888888', '012c4741dff14e8bb12824cd2179b6c4', '罗涛', '男', '21', '5001640@qq.com', null);
+INSERT INTO `users` VALUES ('10001', '包万春', '888888', '', '包万春', '女', '21', '5001235@qq.com', null);
+INSERT INTO `users` VALUES ('10002', '鲍成东', '888888', '', '鲍成东', '男', '22', '5001236@qq.com', null);
+INSERT INTO `users` VALUES ('10003', '蔡宗平', '888888', '', '蔡宗平', '男', '23', '5001237@qq.com', null);
+INSERT INTO `users` VALUES ('10004', '陈新建', '888888', '', '陈新建', '男', '24', '5001238@qq.com', null);
+INSERT INTO `users` VALUES ('10005', '陈子烨', '888888', '', '陈子烨', '男', '25', '5001239@qq.com', null);
+INSERT INTO `users` VALUES ('10006', '杜家柱', '888888', '', '杜家柱', '男', '21', '5001240@qq.com', null);
+INSERT INTO `users` VALUES ('10007', '高峰', '888888', 'dda78eeefb0c47ad98575203721cec2e', '高峰', '男', '21', '5001241@qq.com', null);
+INSERT INTO `users` VALUES ('10008', '高鹏', '888888', '', '高鹏', '男', '21', '5001242@qq.com', null);
+INSERT INTO `users` VALUES ('10009', '郭诚', '888888', '', '郭诚', '男', '21', '5001243@qq.com', null);
+INSERT INTO `users` VALUES ('10010', '何文伍', '888888', '6593da9abd92456181413f9d0deb81ce', '何文伍', '男', '21', '5001244@qq.com', null);
+INSERT INTO `users` VALUES ('10011', '黄冰', '888888', 'a34542b5f25342ecbdcce488414892fb', '黄冰', '女', '23', '5001245@qq.com', 'img+url');
+INSERT INTO `users` VALUES ('10012', '黄金华', '888888', '', '黄金华', '男', '23', '5001246@qq.com', null);
+INSERT INTO `users` VALUES ('10013', '黄星智', '888888', '', '黄星智', '男', '23', '5001247@qq.com', null);
+INSERT INTO `users` VALUES ('10014', '江秋旭', '888888', '', '江秋旭', '男', '23', '5001248@qq.com', null);
+INSERT INTO `users` VALUES ('10015', '蒋士虎', '888888', '', '蒋士虎', '男', '23', '5001249@qq.com', null);
+INSERT INTO `users` VALUES ('10016', '雷军亚', '888888', '', '雷军亚', '男', '23', '5001250@qq.com', null);
+INSERT INTO `users` VALUES ('10017', '黎军', '888888', '', '黎军', '男', '23', '5001251@qq.com', null);
+INSERT INTO `users` VALUES ('10018', '李杰', '888888', '', '李杰', '男', '24', '5001252@qq.com', null);
+INSERT INTO `users` VALUES ('10019', '李莉梅', '888888', '', '李莉梅', '女', '24', '5001253@qq.com', null);
+INSERT INTO `users` VALUES ('10020', '李祈芳', '888888', '', '李祈芳', '女', '24', '5001254@qq.com', null);
+INSERT INTO `users` VALUES ('10021', '李启明', '888888', '', '李启明', '男', '24', '5001255@qq.com', null);
+INSERT INTO `users` VALUES ('10022', '李绪强', '888888', '', '李绪强', '男', '24', '5001256@qq.com', null);
+INSERT INTO `users` VALUES ('10023', '刘龙光', '888888', '', '刘龙光', '男', '24', '5001257@qq.com', null);
+INSERT INTO `users` VALUES ('10024', '毛渝', '888888', '', '毛渝', '男', '24', '5001258@qq.com', null);
+INSERT INTO `users` VALUES ('10025', '潘宝俊', '888888', '', '潘宝俊', '男', '22', '5001259@qq.com', null);
+INSERT INTO `users` VALUES ('10026', '任辉敏', '888888', '', '任辉敏', '女', '22', '5001260@qq.com', null);
+INSERT INTO `users` VALUES ('10027', '石柳青', '888888', '', '石柳青', '女', '22', '5001261@qq.com', null);
+INSERT INTO `users` VALUES ('10028', '宋建华', '888888', '', '宋建华', '男', '22', '5001262@qq.com', null);
+INSERT INTO `users` VALUES ('10029', '覃道胜', '888888', '', '覃道胜', '男', '22', '5001263@qq.com', null);
+INSERT INTO `users` VALUES ('10030', '王改霞', '888888', '', '王改霞', '女', '22', '5001264@qq.com', null);
+INSERT INTO `users` VALUES ('10031', '王明星', '888888', '', '王明星', '男', '25', '5001265@qq.com', null);
+INSERT INTO `users` VALUES ('10032', '魏立博', '888888', '', '魏立博', '男', '25', '5001266@qq.com', null);
+INSERT INTO `users` VALUES ('10033', '吴国安', '888888', '', '吴国安', '男', '25', '5001267@qq.com', null);
+INSERT INTO `users` VALUES ('10034', '徐珊珊', '888888', '', '徐珊珊', '女', '25', '5001268@qq.com', null);
+INSERT INTO `users` VALUES ('10035', '徐婉芳', '888888', '', '徐婉芳', '女', '25', '5001269@qq.com', null);
+INSERT INTO `users` VALUES ('10036', '徐宇', '888888', 'e76462fca9d8455d9846bc3692e15a78', '徐宇', '男', '25', '5001270@qq.com', null);
+INSERT INTO `users` VALUES ('10037', '鄢腾', '888888', '', '鄢腾', '男', '25', '5001271@qq.com', null);
+INSERT INTO `users` VALUES ('10038', '杨桂英', '888888', '', '杨桂英', '女', '25', '5001272@qq.com', null);
+INSERT INTO `users` VALUES ('10039', '杨萍', '888888', '', '杨萍', '男', '21', '5001273@qq.com', null);
+INSERT INTO `users` VALUES ('10040', '杨晔', '888888', '', '杨晔', '女', '21', '5001274@qq.com', null);
+INSERT INTO `users` VALUES ('10041', '喻佺', '888888', '', '喻佺', '男', '21', '5001275@qq.com', null);
+INSERT INTO `users` VALUES ('10042', '袁昊杰', '888888', '', '袁昊杰', '男', '24', '5001276@qq.com', null);
+INSERT INTO `users` VALUES ('10043', '张良泽', '888888', '', '张良泽', '男', '24', '5001277@qq.com', null);
+INSERT INTO `users` VALUES ('10044', '张梅杰', '888888', '', '张梅杰', '男', '22', '5001278@qq.com', null);
+INSERT INTO `users` VALUES ('10045', '赵剑波', '888888', '', '赵剑波', '男', '22', '5001279@qq.com', null);
+INSERT INTO `users` VALUES ('10046', '赵雪尔', '888888', '', '赵雪尔', '女', '24', '5001280@qq.com', null);
+INSERT INTO `users` VALUES ('10047', '周小飞', '888888', '', '周小飞', '男', '24', '5001281@qq.com', null);
+INSERT INTO `users` VALUES ('10048', '周长静', '888888', '', '周长静', '女', '22', '5001282@qq.com', null);
+INSERT INTO `users` VALUES ('10049', '朱训兵', '888888', '', '朱训兵', '男', '22', '5001283@qq.com', null);
