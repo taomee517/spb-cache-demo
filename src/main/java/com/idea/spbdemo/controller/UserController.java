@@ -23,6 +23,7 @@ public class UserController {
         ResponseEntity<Boolean> result = new ResponseEntity<Boolean>(b,HttpStatus.OK);
         return  result;
     }
+
     @GetMapping(value = "/{id}")
     @ApiOperation(value="主键查询接口")
     public ResponseEntity<UserPO> get(@PathVariable(value = "id") Integer id){

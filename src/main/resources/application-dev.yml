@@ -3,11 +3,13 @@ server:
 
 
 spring:
+    application:
+        name: cache-demo
     datasource:
         url: jdbc:mysql://127.0.0.1:3306/oa?useSSL=false
         driver-class-name: com.mysql.jdbc.Driver
         username: root
-        password: lt030517
+        password: 123456
 mybatis:
     mapper-locations: classpath:mybatis/mapper/*.xml
     typeAliasesPackage: com.idea.spbdemo.dao.po
@@ -15,3 +17,12 @@ mybatis:
 logging:
     level:
         com.idea.spbdemo.dao.mapper: debug
+
+eureka:
+    client:
+        service-url:
+            defaultZone: http://127.0.0.1:8761/eureka/
+    instance:
+        prefer-ip-address: true
+        instance-id: ${spring.cloud.client.ip-address}:${server.port}
+        status-page-url: http://${spring.cloud.client.ip-address}:${server.port}/swagger-ui.html
