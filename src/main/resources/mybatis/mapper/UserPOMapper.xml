@@ -69,7 +69,7 @@
     delete from users
     where uid = #{uid,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="com.idea.spbdemo.dao.po.UserPO">
+  <insert id="insert" parameterType="com.idea.spbdemo.dao.po.UserPO" useGeneratedKeys="true" keyProperty="uid">
     insert into users (uid, uname, upw, 
       token, realname, sex, 
       deptid, email, img)

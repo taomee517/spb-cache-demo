@@ -8,7 +8,7 @@ public interface IUserService {
 
     boolean delete(Integer id);
 
-    boolean update(UserPO user);
+    UserPO update(UserPO user);
 
     UserPO query(Integer id);
 

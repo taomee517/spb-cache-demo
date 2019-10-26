@@ -7,6 +7,7 @@ import com.idea.spbdemo.dao.po.UserPO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.*;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.List;
@@ -18,6 +19,7 @@ public class UserServiceImpl implements IUserService {
     private UserPOMapper mapper;
 
     @Override
+    @Transactional(rollbackFor = Exception.class)
     public boolean insert(UserPO user) {
 
         if(mapper.insert(user)>0){
@@ -28,6 +30,7 @@ public class UserServiceImpl implements IUserService {
 
     @Override
     @CacheEvict(key = "#id")
+    @Transactional(rollbackFor = Exception.class)
     public boolean delete(Integer id) {
         int status = mapper.deleteByPrimaryKey(id);
         if(status>0){
@@ -37,13 +40,14 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    @CacheEvict(key = "#root.args[0].uid")
-    public boolean update(UserPO user) {
+    @CachePut(key = "#user.uid", condition = "#result!=null")
+    @Transactional(rollbackFor = Exception.class)
+    public UserPO update(UserPO user) {
         int status = mapper.updateByPrimaryKeySelective(user);
         if(status>0){
-            return true;
+            return user;
         }
-        return false;
+        return null;
     }
 
     @Override

@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Objects;
+
 @RestController
 @RequestMapping(value = "/user")
 @Api(value = "用户控制层", description = "缓存测试")
@@ -51,8 +53,9 @@ public class UserController {
     @PostMapping(value = "/update")
     @ApiOperation(value="修改接口")
     public ResponseEntity<Boolean> update(@RequestBody UserPO user){
-        boolean b = service.update(user);
-        ResponseEntity<Boolean> result = new ResponseEntity<Boolean>(b,HttpStatus.OK);
+        UserPO u = service.update(user);
+        boolean flag = !Objects.isNull(u);
+        ResponseEntity<Boolean> result = new ResponseEntity<Boolean>(flag,HttpStatus.OK);
         return  result;
     }
 
