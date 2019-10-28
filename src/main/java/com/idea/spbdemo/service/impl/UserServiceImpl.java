@@ -39,19 +39,41 @@ public class UserServiceImpl implements IUserService {
         return false;
     }
 
+    /**
+     * @CachePut 注解的作用主要针对方法配置，能够根据方法的请求参数对其结果进行缓存，
+     * 和 @Cacheable 不同的是，它每次都会触发真实方法的调用
+     */
     @Override
     @CachePut(key = "#user.uid", condition = "#result!=null")
     @Transactional(rollbackFor = Exception.class)
     public UserPO update(UserPO user) {
         int status = mapper.updateByPrimaryKeySelective(user);
         if(status>0){
-            return user;
+            return mapper.selectByPrimaryKey(user.getUid());
         }
         return null;
     }
 
+
+    /**
+     * 更新成功后，删除之前的缓存
+     */
+//    @CacheEvict(key = "#user.uid", condition = "#result==true")
+//    @Transactional(rollbackFor = Exception.class)
+//    public Boolean update(UserPO user) {
+//        int status = mapper.updateByPrimaryKeySelective(user);
+//        if(status>0){
+//            return true;
+//        }
+//        return false;
+//    }
+
+
+    /**
+     * @Cacheable 注解会先查询是否已经有缓存，有会使用缓存，没有则会执行方法并缓存
+     */
     @Override
-    @Cacheable(key = "#id",condition = "#id>0") //将查询结果缓存
+    @Cacheable(key = "#id",condition = "#id>0")
     public UserPO query(Integer id) {
         UserPO user = mapper.selectByPrimaryKey(id);
         return user;

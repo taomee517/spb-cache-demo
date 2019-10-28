@@ -2,7 +2,6 @@ package com.idea.spbdemo.controller;
 
 
 import com.idea.spbdemo.dao.po.OrgPO;
-import com.idea.spbdemo.dao.po.UserPO;
 import com.idea.spbdemo.service.IOrgService;
 import io.swagger.annotations.Api;
 import io.swagger.annotations.ApiOperation;
