@@ -32,8 +32,8 @@ spring:
     cache:
       type: redis
       #默认的单位是毫秒
-      redis:
-        time-to-live: 10000
+#      redis:
+#        time-to-live: 10800000
 
 cache:
   expire-time: 180
