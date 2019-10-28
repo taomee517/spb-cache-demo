@@ -79,6 +79,10 @@ public class UserServiceImpl implements IUserService {
         return user;
     }
 
+
+    /**
+     * 组合缓存操作
+     */
     @Override
     @Caching(
             cacheable = {@Cacheable(key = "#name")},

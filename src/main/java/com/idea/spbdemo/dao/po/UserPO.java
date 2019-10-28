@@ -1,6 +1,8 @@
 package com.idea.spbdemo.dao.po;
 
-public class UserPO {
+import java.io.Serializable;
+
+public class UserPO implements Serializable {
     private Integer uid;
 
     private String uname;

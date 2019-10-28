@@ -1,8 +1,9 @@
 package com.idea.spbdemo.dao.po;
 
+import java.io.Serializable;
 import java.util.Date;
 
-public class OrgPO {
+public class OrgPO implements Serializable {
     private Integer id;
 
     private String orgName;
