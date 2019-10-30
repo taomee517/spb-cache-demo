@@ -26,7 +26,7 @@ import java.time.Duration;
 @Slf4j
 public class RedisConfig extends CachingConfigurerSupport {
 
-    @Value("${cache.expire-time:180}")
+    @Value("${cache.expire-time}")
     private int expireTime;
 
     @Bean
